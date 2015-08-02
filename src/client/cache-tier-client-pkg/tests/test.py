@@ -5,7 +5,6 @@ def main():
     base_url = "http://localhost:5000/"
     # base_url = "http://downloads.talkpythontome.com/"
     file = '016-Netflix-roy-rapaport.mp3'
-    # file = '011-pyimagesearch.mp3'
 
     while True:
         input("Enter to simulate request")
