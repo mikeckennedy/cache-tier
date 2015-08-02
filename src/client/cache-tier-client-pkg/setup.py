@@ -1,27 +1,16 @@
-# from distutils.core import setup
-#
-# setup(
-#     name='cache_tier_client',
-#     version='1.0.0',
-#     packages=['cache_tier_client'],
-#     url='https://github.com/mikeckennedy/cache-tier',
-#     license='MIT License',
-#     author='Michael Kennedy - @mkennedy',
-#     author_email='mikeckennedy+pypi@gmail.com',
-#     description=''
-# )
-
 from setuptools import setup
 
 setup(
     name='cache-tier-client',
-    version='1.0.0',
     packages=['cache_tier_client'],
-    url='https://github.com/mikeckennedy/cache-tier',
-    license='MIT License',
+    version='1.0',
+    description='TODO', #TODO Do this
     author='Michael Kennedy - @mkennedy',
     author_email='mikeckennedy+pypi@gmail.com',
-    description='',
-
-    install_requires=['requests'],
+    url='https://github.com/mikeckennedy/cache-tier',
+    download_url='https://github.com/mikeckennedy/cache-tier/tarball/1.0.0',
+    license='MIT License',
+    keywords=['caching', 'cache-tier', 'cache', 'tier'],
+    classifiers=[],
+    install_requires=['requests']
 )
