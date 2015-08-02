@@ -3,6 +3,7 @@ import os
 from datetime import timedelta, datetime
 import requests
 
+
 class CacheTierClient:
     """
     Cache-tier client allows for querying for files on your cache-tier system.
@@ -15,7 +16,8 @@ class CacheTierClient:
     def __init__(self, base_url,
                  request_timeout=1.0,
                  enable_local_cache=True,
-                 local_cache_time=120.0):
+                 local_cache_time=120.0,
+                 log_enabled=False):
         """
         Cache-tier client allows for querying for files on your cache-tier system.
         These queries can both trigger populating the remote cache as well as
@@ -40,6 +42,9 @@ class CacheTierClient:
         self.base_url = base_url.strip().strip('/') + '/'
         """ The base url of your remove cache-tier system (e.g. http://server/cacheapp/) """
 
+        self.log_enabled = log_enabled
+        """ Determines whether log messages are printed to standard out """
+
     def verify_file(self, file_name):
         """
         Contacts the remove cache-tier system and determines whether the requested file is present on the cache.
@@ -52,19 +57,19 @@ class CacheTierClient:
         file_name = os.path.basename(file_name.strip())
 
         if not self.enabled:
-            print("CacheClient: Skipping cache server (disabled)")
+            self.__log("Skipping cache server (disabled)")
             return self.__get_server_status(file_name)
 
         if self.is_stale(file_name):
-            print("CacheClient: {} is stale, updating from server".format(file_name))
+            self.__log("{} is stale, updating from server".format(file_name))
             available = self.__get_server_status(file_name)
             self.__update_verify_time(file_name, available)
-            print("CacheClient: {} availability is {}".format(file_name, available))
+            self.__log("{} availability is {}".format(file_name, available))
             return available
 
         time, status = CacheTierClient.__remote_status_cache.get(
             file_name.lower(), (None, False))
-        print("CacheClient: Using cached for {}, available: {}".format(file_name, status))
+        self.__log("Using cached for {}, available: {}".format(file_name, status))
         return status
 
     @staticmethod
@@ -131,12 +136,18 @@ class CacheTierClient:
             result = r.json()
 
             if result["error"]:
-                print("CacheClient: Error returned from cache server " + result["error_msg"])
+                self.__log("Error returned from cache server " + result["error_msg"])
 
             return result['available']
         except Exception as x:
-            print("CacheClient: Error accessing cache server: {}".format(x))
+            self.__log("ERROR: Error accessing cache server: {}".format(x))
             return False
+
+    def __log(self, msg):
+        if not self.log_enabled or not msg or not msg.strip():
+            return
+
+        print('CacheClient: {}'.format(msg.strip()))
 
 
 class CacheException(Exception):

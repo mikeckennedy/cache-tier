@@ -1,4 +1,4 @@
-import cache_tier_client
+import cache_tier
 
 
 def main():
@@ -9,7 +9,7 @@ def main():
 
     while True:
         input("Enter to simulate request")
-        cache = cache_tier_client.CacheTierClient(base_url, local_cache_time=20)
+        cache = cache_tier.CacheTierClient(base_url, local_cache_time=20, log_enabled=True)
         if cache.verify_file(file):
             print("File validated, would download at:")
             print(cache.build_download_url(file))

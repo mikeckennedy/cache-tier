@@ -1,4 +1,4 @@
 {
-  "download_base_url": "https://s3.amazonaws.com/michael-kennedy/talk-python-to-me/episodes/",
+  "download_base_url": "https://s3.amazonaws.com/USERNAME/BUCKET/FOLDER/",
   "cache_folder": "../static/files_cache/"
 }

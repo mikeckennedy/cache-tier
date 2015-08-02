@@ -1,5 +1,4 @@
 {
-  "download_base_url": "https://s3.amazonaws.com/michael-kennedy/talk-python-to-me/episodes/",
-  "cache_folder": "../static/files_cache/",
-  "ping_url": "http://downloads.talkpythontome.com/"
+  "download_base_url": "https://s3.amazonaws.com/USERNAME/BUCKET/FOLDER/",
+  "cache_folder": "../static/files_cache/"
 }

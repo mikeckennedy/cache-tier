@@ -18,7 +18,6 @@ class SiteConfig:
         self.cache_folder = os.path.abspath(
             os.path.join(os.path.dirname(__file__), self.get_val("cache_folder"))
         )
-        self.ping_url = self.get_val("ping_url")
         self.download_base_url = self.get_val("download_base_url")
 
     @staticmethod

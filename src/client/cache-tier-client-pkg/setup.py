@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(
-    name='cache-tier-client',
-    packages=['cache_tier_client'],
+    name='cache_tier',
+    packages=['cache_tier'],
     version='1.0',
     description='TODO', #TODO Do this
     author='Michael Kennedy - @mkennedy',
