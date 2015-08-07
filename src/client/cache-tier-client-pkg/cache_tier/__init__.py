@@ -8,4 +8,4 @@
     examples. Written by Michael Kennedy @mkennedy
 """
 
-from .cache_client import CacheTierClient as CacheTierClient
+from .cache_client import CacheTierClient

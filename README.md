@@ -32,7 +32,7 @@ Use the CacheTierClient for efficient results. It uses the REST/JSON API to dete
 
 Typical code might look like this:
 
-    import cache_tier_client
+    import cache_tier
     
     def main():
         base_url = "http://downloads.yourserver.com/"
@@ -40,7 +40,7 @@ Typical code might look like this:
     
         while True:
             input("Enter to simulate request")
-            cache = cache_tier_client.CacheTierClient(
+            cache = cache_tier.CacheTierClient(
                         base_url, local_cache_time=20)
                         
             if cache.verify_file(file):
