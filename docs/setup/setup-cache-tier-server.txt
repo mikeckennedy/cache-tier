@@ -1,0 +1,38 @@
+# setup downloads.talkpython server
+
+apt-get update -y
+apt-get install git
+apt-get install nginx
+apt-get install --no-install-recommends -y -q build-essential python3 python3-dev python-pip git python3-pip wget unzip
+apt-get install htop
+
+pip3 install -U pip
+pip3 install pip flask requests SQLAlchemy Chameleon boto gunicorn virtualenv uwsgi uwsgitop
+pip3 install glances
+
+mkdir /webapps
+cd /webapps
+git clone https://github.com/mikeckennedy/cache-tier.git
+cd /webapps/cache-tier/src/server/cache-tier-svr
+
+chmod 777 /webapps/cache-tier/src/server/cache-tier-svr/static/files_cache/
+
+# modify nginx:
+# service nginx start
+# service nginx stop
+# service nginx restart
+
+cp /webapps/cache-tier/src/server/cache-tier-svr/etc/init/cache_tier_webapp.conf /etc/init
+
+
+start cache_tier_webapp
+
+# CAREFUL HERE. If you are using defualt, maybe skip this
+rm /etc/nginx/sites-enabled/default
+
+cp /webapps/cache-tier/src/server/cache-tier-svr/etc/nginx/sites-available/cache_tier_webapp /etc/nginx/sites-enabled/cache_tier_webapp
+
+chmod 777 /tmp/cache-tier.sock
+
+
+update-rc.d nginx enable 

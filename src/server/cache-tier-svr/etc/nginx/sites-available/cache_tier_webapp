@@ -5,11 +5,11 @@ server {
     client_max_body_size 150M;
 
     location /static {
-        alias /webapps/talk-python-to-me/src/episode_cache/episode_cache_app/static/;
+        alias /webapps/cache-tier/src/server/cache-tier-svr/static/;
     }
     location / { try_files $uri @yourapplication; }
     location @yourapplication {
         include uwsgi_params;
-        uwsgi_pass unix:/tmp/episode-cache.sock;
+        uwsgi_pass unix:/tmp/cache-tier.sock;
     }
 }
