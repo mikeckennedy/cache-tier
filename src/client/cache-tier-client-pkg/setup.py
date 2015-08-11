@@ -1,5 +1,8 @@
 from setuptools import setup
 
+# submit with: python setup.py sdist upload -r pypi
+# more info at: http://peterdowns.com/posts/first-time-with-pypi.html
+
 setup(
     name='cache_tier',
     packages=['cache_tier'],
