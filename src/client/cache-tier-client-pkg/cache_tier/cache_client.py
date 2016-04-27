@@ -62,15 +62,19 @@ class CacheTierClient:
 
         if self.is_stale(file_name):
             self.__log("{} is stale, updating from server".format(file_name))
-            available = self.__get_server_status(file_name)
-            self.__update_verify_time(file_name, available)
-            self.__log("{} availability is {}".format(file_name, available))
+            available = self.refresh_status_from_server(file_name)
             return available
 
         time, status = CacheTierClient.__remote_status_cache.get(
             file_name.lower(), (None, False))
         self.__log("Using cached for {}, available: {}".format(file_name, status))
         return status
+
+    def refresh_status_from_server(self, file_name):
+        available = self.__get_server_status(file_name)
+        self.__update_verify_time(file_name, available)
+        self.__log("{} availability is {}".format(file_name, available))
+        return available
 
     @staticmethod
     def __update_verify_time(file_name, available):
