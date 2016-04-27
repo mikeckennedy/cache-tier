@@ -56,3 +56,8 @@ docs/_build/
 # PyBuilder
 target/
 *.mp3
+.idea/cache-tier.iml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
