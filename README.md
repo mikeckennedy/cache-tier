@@ -12,9 +12,9 @@ Here is a rough sketch of the flow:
 
 ![cache-tier architecture](docs/images/cache-tier-arch.png)
 
-The original use-case for this project was MP3s from the [Talk Python To Me podcast](http://talkpythontome.com). These files are available on Amazon S3 but the costs for bandwidth on S3 were much higher than other options. Hence, hosting the cache-tier server elsewhere and using cache-tier to serve terabytes of data per month was much more cost effective and just as fast as S3.
+The original use-case for this project was MP3s from the [Talk Python To Me podcast](https://talkpython.fm). These files are available on Amazon S3 but the costs for bandwidth on S3 were much higher than other options. Hence, hosting the cache-tier server elsewhere and using cache-tier to serve terabytes of data per month was much more cost effective and just as fast as S3.
 
-As of this writing, you can visit [talkpythontome.com](http://talkpythontome.com), click download mp3 for any episode and see the flow in action. During peak load (when new episodes were released), the cache-tier server a sustained 900 MBit/sec of MP3s for hundreds of requests without missing a beat.
+As of this writing, you can visit [talkpythontome.com](https://talkpython.fm), click download mp3 for any episode and see the flow in action. During peak load (when new episodes were released), the cache-tier server a sustained 900 MBit/sec of MP3s for hundreds of requests without missing a beat.
 
 ## Setup
 
@@ -24,7 +24,7 @@ You need to setup the web application for the cache-tier. This is a simple Flask
 
 The server has several configuration settings such as where to store the files locally and where to look remotely for files when syncing.
 
-**Important**: Make certain that you use NGnix, and not uWSGI/Flask, to serve the static files.
+**Important**: Make certain that you use ngnix, and not uWSGI/Flask, to serve the static files.
 
 ###Client:
 
